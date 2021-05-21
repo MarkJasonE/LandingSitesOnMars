@@ -1,6 +1,5 @@
 <h1>Project Objective</<h1>
-<br>
-Select from the MOLA map the 20 safest regions (670km X 335km) that are near the Martian equator. Then choose a region for our lander.
+<p>Select from the MOLA map the 20 safest regions (670km X 335km) that are near the Martian equator. Then choose a region for our lander.</p>
 
 <h2>Requirements For Landing On Mars</<h2>
 *Add
