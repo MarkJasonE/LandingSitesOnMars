@@ -68,3 +68,21 @@ class Search():
             if lr_y > LAT_30_S + STEP_Y:
                 #Stop if more than half of rect extend below latitude 30 south
                 break
+    
+    def draw_qc_rects(self):
+        """ Draw overlapping rectangles on image for quality control. """
+
+        img_copy = IMG_GRAY.copy() #Everything drawn on an image with OpenCV becomes part of the image, so we make a copy of the original copy
+        rects_sorted = sorted(self.rect_coords.items(), key=lambda x: x[0]) #Prints coords in numerical order. Returns key=>rect num, val=>list of coords
+        print("\nRect number and corner coordinates (ul_x, ul_y, lr_x, lr_y):")
+        for k, v in rects_sorted: 
+            print("rect: {}, coords: {}".format(k, v))
+
+            #Draw rectangle (img to draw, rect coords, line width)
+            cv.rectangle(img_copy,
+                        (self.rect_coords[k][0], self.rect_coords[k][1]), #0=upper left x, 1=upper left y
+                        (self.rect_coords[k][2], self.rect_coords[k][3]), #2=lower right x, 3=lower right y
+                        (255, 0, 0), 1)
+            cv.imshow("QC Rects {}".format(self.name). img_copy)
+            cv.waitKey(3000) #Leave window open for 3 sec
+            cv.destroyAllWindows()
