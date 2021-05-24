@@ -2,6 +2,7 @@ import cv2  as cv
 import numpy as np
 import tkinter as tk
 from PIL import Image, ImageTk
+from utils import convert_ps_to_png
 
 #CONSTANTS: Inputs
 IMG_GRAY = cv.imread("images/mola_1024x501.png", cv.IMREAD_GRAYSCALE)
@@ -176,8 +177,11 @@ class Search():
                 #Make new column shifting x coords by 300 and reset y coords by img heihgt + 20
                 txt_x += 300
                 txt_y = IMG_HT + 20
-        
+
         canvas.pack() #Packing optimizes the placement of objects in the canvas
+        
+        canvas.postscript(file="images/final_mola_stats.ps", colormode="color")
+
         screen.mainloop() #mainloop() is an infinite loop that runs tkinter, waits for an event to happen, then processes said event until the window is closed
 
 def main():
@@ -196,6 +200,7 @@ def main():
     cv.waitKey(10)
 
     app.make_final_display()
+    convert_ps_to_png("images/final_mola_stats.ps")
 
 if __name__ == "__main__":
     main()
